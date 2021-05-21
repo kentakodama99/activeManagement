@@ -4,9 +4,9 @@
 ### docker
 ***
 .envファイルを作成し、環境変数を入れてください。
-#### container create
+#### donker-compose run
 ```docker-compose up -d```
-#### run
+#### MySQL run
 ```docker-compose exec db bash```
 #### MySQL login
 ```mysql -u [username] -p```
