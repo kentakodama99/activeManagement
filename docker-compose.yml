@@ -3,6 +3,8 @@ version: '3.8'
 services:
     db:
         container_name: ac_m_db
+        build:
+            context: ./docker/db/
         image: mysql:5.7
         ports:
             - ${DB_PORT}:3306
