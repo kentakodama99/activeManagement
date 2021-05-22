@@ -5,7 +5,7 @@ services:
         container_name: ac_m_db
         image: mysql:5.7
         ports:
-            - 3306:3306
+            - ${DB_PORT}:3306
         volumes:
             - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf  #MySQL設定ファイル
             - ./docker/db/data:/var/lib/mysql #MySQLデータ

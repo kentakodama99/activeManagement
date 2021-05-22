@@ -1,0 +1,13 @@
+#-*- coding:utf-8 -*-
+SQL_UP = u"""
+CREATE TABLE ic_users (
+  id int(11) NOT NULL,
+  ic_id varchar(100),
+  ic_name varchar(100),
+  PRIMARY KEY  (ic_id)
+);
+"""
+
+SQL_DOWN = u"""
+DROP TABLE ic_users;
+"""
