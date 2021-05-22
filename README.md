@@ -32,11 +32,13 @@ TZ=Asia/Tokyo
 ```
 ### docker
 ---
-.envファイルを作成し、環境変数を入れてください。
-  
 コンテナ起動
   
 ```docker-compose up -d```
+  
+コンテナ停止
+  
+```docker-compose down```
   
 コンテナ更新
   
@@ -58,5 +60,7 @@ pip install simple-db-migrate
 pip install python-dotenv
 pip install mysqlclient
 ```
-./migrateにて以下のコマンドを実行<br/>
+./migrateにて以下のコマンドを実行
+  
 ```db-migrate```
+  
