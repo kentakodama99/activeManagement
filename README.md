@@ -1,20 +1,57 @@
 # activeManagement
 出席管理ツール的な。目標：夏前までくらいに完成
 
+### 環境
+---
+| Title | Description | Vertion |
+|----|----|----|
+| 仮想環境 | Docker for Windows | 20.10.5 |
+|  | conda | 4.10.1 |
+| データベース | MySQL | 5.7 |
+| アプリケーション言語| Python | 3.7 |
+  
+### 準備
+---
+.envファイルプロジェクトのルートディレクトリに作成し配置。以下を記述。
+```
+DB_HOST=接続ホスト
+DB_NAME=データベース名
+DB_PORT=ポート番号
+DB_USER=ユーザー名
+DB_PASS=パスワード
+TZ=タイムゾーン
+```
+例
+```
+DB_HOST=localhost
+DB_NAME=hoge
+DB_PORT=3306
+DB_USER=fuga
+DB_PASS=piyo
+TZ=Asia/Tokyo
+```
 ### docker
-***
+---
 .envファイルを作成し、環境変数を入れてください。
-#### donker-compose 起動
+  
+コンテナ起動
+  
 ```docker-compose up -d```
-#### docker-compose 更新
+  
+コンテナ更新
+  
 ```docker-compose up -d --build```
-#### docker-compose MySQLにアクセス
+  
+MySQLにアクセス
+  
 ```docker-compose exec db bash```
-#### MySQL login
+  
+MySQLにログイン
+  
 ```mysql -u [username] -p```
 
 ### DBmigrate
-***
+---
 必要パッケージ
 ```
 pip install simple-db-migrate
