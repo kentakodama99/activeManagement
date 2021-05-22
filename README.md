@@ -43,6 +43,10 @@ TZ=Asia/Tokyo
   
 コンテナ停止
   
+```docker-compose stop```
+  
+コンテナ削除
+  
 ```docker-compose down```
   
 コンテナ更新
