@@ -1,2 +1,5 @@
 docker/db/data
 .env
+api/__pycache__
+api/test.py
+memo.txt
