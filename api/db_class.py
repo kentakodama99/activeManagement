@@ -15,9 +15,9 @@ class dbclass(object):
             charset='utf8',
             cursorclass = pymysql.cursors.DictCursor)
 
-    def getAll(self,table = "AllIc"): #table引数 table->table単体を取得。All->全てのIC情報の取得。
+    def getAll(self,table = "All"): #table引数 table->table単体を取得。All->全てのIC情報の取得。
         with self.connection.cursor() as cursor:
-            if table == "AllIc":
+            if table == "All":
                 sql = "SELECT * FROM users right join ic_users on users.id = ic_users.id "
                 sql += "ORDER BY users.id ASC;"
             else:
@@ -28,10 +28,10 @@ class dbclass(object):
             res = cursor.fetchall()
         return res
 
-    def getUser(self,user_id): #table引数 table->table単体を取得。All->全ての情報の取得。
+    def getUser(self,id):
         with self.connection.cursor() as cursor:
             sql = "SELECT * FROM users left join ic_users on users.id = ic_users.id WHERE users.id = %s;"
-            cursor.execute(sql,(user_id))
+            cursor.execute(sql,(id))
             self.connection.commit()
             res = cursor.fetchall()
         return res
@@ -50,9 +50,9 @@ class dbclass(object):
             print("[id:{}] 名前:{} checked_at:{}".format(raw["id"],raw["username"],raw["checked_at"]))
         print("--------------------------\n")
 
-    def checkIc(self,ic_id): #table引数 table->table単体を取得。All->全ての情報の取得。
+    def checkIc(self,ic_id):
         with self.connection.cursor() as cursor:
-            sql = "SELECT * FROM ic_users WHERE ic_id = %s;"
+            sql = "SELECT * FROM users left join ic_users on users.id = ic_users.id WHERE ic_id = %s;"
             cursor.execute(sql,(ic_id))
             self.connection.commit()
             res = cursor.fetchone()
@@ -82,6 +82,22 @@ class dbclass(object):
             cursor.execute(sql,(update_ic_id,ic_name,ic_id)) #SQLの実行
             self.connection.commit()
             return
+
+    def loginUser(self,id,checked_at):
+        with self.connection.cursor() as cursor:
+            sql = "UPDATE users SET checked_at = %s WHERE id = %s;"
+            cursor.execute(sql,(checked_at,id))
+            self.connection.commit()
+            res = cursor.fetchone()
+        return res
+
+    def logoutUser(self,id):
+        with self.connection.cursor() as cursor:
+            sql = "UPDATE users SET checked_at = NULL WHERE id = %s;"
+            cursor.execute(sql,(id))
+            self.connection.commit()
+            res = cursor.fetchone()
+        return res
         
     def delete(self,ic_id,id):
         print(ic_id)

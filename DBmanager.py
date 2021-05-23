@@ -34,13 +34,13 @@ def getIdm():
             if db.checkIc(res):
                 print("このICカードはすでに登録されています。他のICカードでやり直しますか？[y/n]")
                 val = input('[y/n]>>')
+                nfc.resetIdm()
                 if not val == str("y"):
                     print("終了します")
                     exit()
-                else:
-                    break
-            nfc.resetIdm()
-            return res
+            else:
+                nfc.resetIdm()
+                return res
     except:
         nfc.resetIdm()
         print("エラーが発生しました。プログラムを終了します。")
