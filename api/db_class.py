@@ -100,8 +100,6 @@ class dbclass(object):
         return res
         
     def delete(self,ic_id,id):
-        print(ic_id)
-        print(id)
         with self.connection.cursor() as cursor:
             #ICカード更新
             sql =  "DELETE FROM ic_users WHERE ic_id = %s;"
@@ -109,7 +107,6 @@ class dbclass(object):
             self.connection.commit()
             check = self.getUser(id)
             if check[0]["ic_id"] is None:
-                print(check)
                 sql =  "DELETE FROM users WHERE id = %s;"
                 cursor.execute(sql,(id)) #SQLの実行
                 self.connection.commit()
